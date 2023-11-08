@@ -27,7 +27,7 @@ This repo is an implementation of PyTorch version YOLOX, there is also a [MegEng
 Step1. Install YOLOX from source.
 ```shell
 # clone code
-git@github.com:ApolloAuto/apollo-model-yolox.git
+git clone git@github.com:ApolloAuto/apollo-model-yolox.git
 
 cd apollo-model-yolox
 
@@ -48,8 +48,8 @@ Step1. Download a pretrained model from the benchmark table.
 
 |Model |size | Params<br>(M) |[Datasets](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=2d)| [Class](yolox/data/datasets/voc_classes.py)| weights |
 | ------  |:---: | :---: | :----: | :----: |:----: |
-|[YOLOX-voc-s](./exps/example/yolox_voc/yolox_voc_s.py) |640 | 8.9 | KITTI   | 6| [link](TODO) |
-|[YOLOX-voc-s](./exps/example/yolox_voc/yolox_voc_s.py) |640 | 8.9 | L4-100w | 8| [link](TODO) |
+|[YOLOX-voc-s](./exps/example/yolox_voc/yolox_voc_s.py) |640 | 8.9 | KITTI   | 6| [link](https://github.com/ApolloAuto/apollo-model-yolox/releases/download/model/best_kitti_ckpt.pth) |
+|[YOLOX-voc-s](./exps/example/yolox_voc/yolox_voc_s.py) |640 | 8.9 | L4      | 8| [link](https://github.com/ApolloAuto/apollo-model-yolox/releases/download/model/best_L4_ckpt.pth) |
 
 Step2. For example, here we use best_L4_ckpt model:
 
