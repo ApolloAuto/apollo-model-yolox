@@ -73,13 +73,15 @@ Step2. Tools for kitti type datasets
 We provide tools for KITTI type datasets which can help to trans it to VOC type : [readme](datasets/README.md)
 
 Step3. change kitti configs
+
+1. change [yolox_voc_s](exps/example/yolox_voc/yolox_voc_s.py) 
 - class number: 8 to 6
-1. change [voc_classes.py](yolox/data/datasets/voc_classes.py) to KITTI class.
-2. modify [yolox_voc_s.py](exps/example/yolox_voc/yolox_voc_s.py) todo items.
-3. modify [voc.py](yolox/data/datasets/voc.py) line 119 change jpg to png
-```python
-self._imgpath = os.path.join("%s", "JPEGImages", "%s.jpg") # to png
-```
+- data_dir=os.path.join(get_yolox_datadir(), "CUSTOMER") to KITTI
+2. change [voc_classes.py](yolox/data/datasets/voc_classes.py) to KITTI class.
+3. modify [yolox_voc_s.py](exps/example/yolox_voc/yolox_voc_s.py) todo items.
+4. modify [voc.py](yolox/data/datasets/voc.py) line 119 change jpg to png
+- self._imgpath = os.path.join("%s", "JPEGImages", "%s.jpg") # to png
+
 
 Step4. Reproduce our results on KITTI:
 
