@@ -91,7 +91,7 @@ def main():
     logger.info("loading checkpoint done.")
     dummy_input = torch.randn(1, 3, exp.test_size[0], exp.test_size[1])
     
-    # output = model(dummy_input)[0]
+    output = model(dummy_input)[0]
     # print(output[0][0][5])
     
     torch.onnx._export(
@@ -110,20 +110,28 @@ def main():
     import onnxruntime as ort
     session = ort.InferenceSession(args.output_name, providers=['CUDAExecutionProvider'])
     dummy_input = dummy_input.cpu().numpy().astype(numpy.float32)
-    # new_outputs = session.run(None,{'data':dummy_input})[0]
+    new_outputs = session.run(None,{'data':dummy_input})[0]
     # print(new_outputs[0][0][5])
 
+    # FP16 model for Apollo trt8.5 docker
+    import onnx
+    onnx_model = onnx.load(args.output_name)
 
-    if not args.no_onnxsim:
-        import onnx
-        from onnxsim import simplify
+    onnx_fp16_model_save_path = args.output_name.split(".")[0] + "_fp16.onnx"
+    from onnxmltools.utils import float16_converter
+    trans_model = float16_converter.convert_float_to_float16(onnx_model,keep_io_types=True)
+    onnx.save_model(trans_model, onnx_fp16_model_save_path)
+    
+    # if not args.no_onnxsim:
+    #     import onnx
+    #     from onnxsim import simplify
 
-        # use onnx-simplifier to reduce reduent model.
-        onnx_model = onnx.load(args.output_name)
-        model_simp, check = simplify(onnx_model)
-        assert check, "Simplified ONNX model could not be validated"
-        onnx.save(model_simp, args.output_name)
-        logger.info("generated simplified onnx model named {}".format(args.output_name))
+    #     # use onnx-simplifier to reduce reduent model.
+    #     onnx_model = onnx.load(args.output_name)
+    #     model_simp, check = simplify(onnx_model)
+    #     assert check, "Simplified ONNX model could not be validated"
+    #     onnx.save(model_simp, args.output_name)
+    #     logger.info("generated simplified onnx model named {}".format(args.output_name))
 
 
 if __name__ == "__main__":

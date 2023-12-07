@@ -10,7 +10,7 @@ This repo is an implementation of PyTorch version YOLOX, there is also a [MegEng
 <img src="assets/git_fig.png" width="1000" >
 
 ## Updates!!
-* 【2023/11/08】 We employ YOLOX(commit id ac58e0a5e68e57454b7b9ac822aced493b553c53) as the first stage in [Apollo](https://github.com/ApolloAuto/apollo) camera_detection_multi_stage component.
+* 【2023/10/23】 We employ YOLOX(commit id ac58e0a5e68e57454b7b9ac822aced493b553c53) as the first stage in [Apollo](https://github.com/ApolloAuto/apollo) camera_detection_multi_stage component.
 * 【2023/02/28】 We support assignment visualization tool, see doc [here](./docs/assignment_visualization.md).
 * 【2022/04/14】 We support jit compile op.
 * 【2021/08/19】 We optimize the training process with **2x** faster training and **~1%** higher performance! See [notes](docs/updates_note.md) for more details.
