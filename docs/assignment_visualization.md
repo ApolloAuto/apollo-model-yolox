@@ -9,7 +9,11 @@ We provide a visualization tool to help you visualize your label assignment resu
 Here is an example of command to visualize your label assignment result:
 
 ```shell
+coco type:
 python3 tools/visualize_assign.py -f /path/to/your/exp.py yolox-s -d 1 -b 8 --max-batch 2
+
+voc type:
+python3 tools/visualize_assign.py -f exps/example/yolox_voc/yolox_voc_s.py -d 1 -b 4
 ```
 
 `max-batch` here means the maximum number of batches to visualize. The default value is 1, which the tool means only visualize the first batch.
@@ -21,7 +25,10 @@ After running the command, the logger will show you where the visualization resu
 ## 2. Check the visualization result
 
 Here is an example of visualization result:
-<div align="center"><img src="../assets/assignment.png" width="640"></div>
+<div align="center"><img src="../assets/assign_without_mosaic.png" width="640"></div>
+
+<div align="center"><img src="../assets/assign_mosaic.png" width="640"></div>
+
 
 Those dots in one box is the matched anchor of gt box. **The color of dots is the same as the color of the box** to help you determine which object is assigned to the anchor. Note the box and dots are **instance level** visualization, which means the same class may have different colors.  
 **If the gt box doesn't match any anchor, the box will be marked as red and the red text "unmatched" will be drawn over the box**.

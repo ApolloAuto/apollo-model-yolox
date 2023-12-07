@@ -10,6 +10,7 @@ from loguru import logger
 
 import torch
 import torch.backends.cudnn as cudnn
+sys.path.append(sys.path[0].split('/tools')[0])
 
 from yolox.exp import Exp, get_exp
 from yolox.core import Trainer

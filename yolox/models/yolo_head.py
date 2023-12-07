@@ -606,7 +606,7 @@ class YOLOXHead(nn.Module):
         # TODO: use forward logic here.
 
         for k, (cls_conv, reg_conv, stride_this_level, x) in enumerate(
-            zip(self.cls_convs, self.reg_convs, self.strides, xin)
+            zip(self.cls_convs, self.reg_convs, self.strides, xin[0])
         ):
             x = self.stems[k](x)
             cls_x = x
@@ -619,11 +619,11 @@ class YOLOXHead(nn.Module):
             obj_output = self.obj_preds[k](reg_feat)
 
             output = torch.cat([reg_output, obj_output, cls_output], 1)
-            output, grid = self.get_output_and_grid(output, k, stride_this_level, xin[0].type())
+            output, grid = self.get_output_and_grid(output, k, stride_this_level, xin[0][0].type())
             x_shifts.append(grid[:, :, 0])
             y_shifts.append(grid[:, :, 1])
             expanded_strides.append(
-                torch.full((1, grid.shape[1]), stride_this_level).type_as(xin[0])
+                torch.full((1, grid.shape[1]), stride_this_level).type_as(xin[0][0])
             )
             outputs.append(output)
 

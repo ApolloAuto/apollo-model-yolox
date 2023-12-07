@@ -86,11 +86,11 @@ Step3. change kitti configs
 Step4. Reproduce our results on KITTI:
 
 ```shell
-python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 0 -b 16
+python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 1 -b 16
 ```
 or resume
 ```shell
-python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 0 -b 16 -c /path/to/your/latest_ckpt.pth --resume
+python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 1 -b 16 -c /path/to/your/latest_ckpt.pth --resume
 ```
 
 * -d: number of gpu devices
@@ -98,6 +98,8 @@ python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 0 -b 16 -c /p
 * --fp16: mixed precision training
 * --cache: caching imgs into RAM to accelarate training, which need large system RAM.
 * -c: checkpoint file path
+
+If you want to visuialize your results, please refer to [Visualization guides](docs/assignment_visualization.md)
 
 <details>
 <summary>Export</summary>
